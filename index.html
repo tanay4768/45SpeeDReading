@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed reading</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>
+        Speed Reader
+    </h1>
+   <div class="container">
+        <h3>
+            Input text here:
+        </h3>
+        <textarea id="targetTextArea"  rows="12" cols="60"></textarea><br>
+        <h3>
+            Set Your Speed here:
+        </h3>
+        <input type="number"  value="500" id="speed">
+        <button onclick="startReading()">Start</button><button onclick="stopReading()">Stop</button><br>
+    <div class="displaycontainer">
+        <h2 id="displaytext">
+
+        </h2>
+    </div>   
+   </div>
+        <script type="text/javascript">
+            let end_89=false;
+            let pause_89=false;
+        function stopReading(){
+            end_89=true;
+        }
+
+        function startReading() {
+            end_89=false;
+            const targetTextArea = document.getElementById('targetTextArea');
+            const output = document.getElementById('displaytext');
+            const words = targetTextArea.value.split(/\s+/); // Split 
+            let currentIndex = 0;
+            let interval = document.getElementById('speed').value; // Interval in milliseconds (adjust as needed)
+            const printNextWord = () => {
+                if(end_89==true){
+                    return;
+                }
+                else if (currentIndex < words.length) {
+                    output.innerHTML=words[currentIndex];
+                    interval = document.getElementById('speed').value;
+                    setTimeout(printNextWord, interval);
+                    currentIndex++;
+                }
+
+            };
+
+            printNextWord();
+        }
+    </script>
+</body>
+</html>

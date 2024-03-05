@@ -1,0 +1,13 @@
+.container{
+    position: relative;
+    top: 20vh;
+}
+button{
+    margin: 1vh;
+}
+.displaycontainer{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+}
